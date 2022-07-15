@@ -1,0 +1,36 @@
+{% extends "bidder/base.html" %}
+{% block title %}e-Auction{% endblock %}
+
+{% block navbar %}
+{% include "bidder/nav.html" %}
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="m-5">
+        <h1 class="font-weight-light">Here are your bids!</h1>
+        <hr>
+        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-3">
+            {% for bid in bids %}
+            <div class="col">
+                <div class="card m-1 shadow-lg p-3 mb-5 bg-white rounded">
+                    <img src="{% if bid.product.image %}{{ bid.product.image.url }}{% endif %}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ bid.product.name }}</h5>
+                        <p class="card-text">{{ bid.product.description }}</p>
+                        <div class="d-flex flex-row justify-content-between mb-2">
+                            <div class="d-flex">Price</div>
+                            <div class="d-flex">&#8377; {{ bid.product.min_price }}</div>
+                        </div>
+                        <div class="d-flex flex-row justify-content-between mb-2">
+                            <div class="d-flex">Your Bid</div>
+                            <div class="d-flex">&#8377; {{ bid.amount }}</div>
+                        </div>
+                        <div class="rounded text-white p-2 bg-primary text-center d-block" style="font-size: 1em">{{ bid.getStatus }}</div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

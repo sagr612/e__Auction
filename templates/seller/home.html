@@ -1,0 +1,20 @@
+{% extends "seller/base.html" %}
+{% block title %}e-Auction{% endblock %}
+
+{% block navbar %}
+{% include "seller/nav.html" %}
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="m-5">
+        <div class="jumbotron shadow-lg rounded">
+            <h1 class="display-4">Welcome to e-Auction {{ user.username }}!</h1>
+            <hr class="my-4">
+            <p>
+                Want to put some items on auction add your products!
+            </p>
+            <a class="btn btn-primary btn-lg" href="{% url 'add_product' %}" role="button">Lets go!!</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

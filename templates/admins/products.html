@@ -1,0 +1,32 @@
+{% extends "admins/base.html" %}
+{% block title %}e-Auction{% endblock %}
+
+{% block navbar %}
+{% include "admins/nav.html" %}
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="m-5">
+        <h1 class="font-weight-light">Products!</h1>
+        <hr>
+        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-3">
+            {% for product in products %}
+            <div class="col">
+                <div class="shadow-lg p-3 mb-5 bg-white rounded card m-1">
+                    <img src="{% if product.image %}{{ product.image.url }}{% endif %}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">{{ product.description }}</p>
+                        <div class="d-flex flex-row justify-content-between mb-2">
+                            <div class="d-flex">Price</div>
+                            <div class="d-flex">&#8377; {{ product.min_price }}</div>
+                        </div>
+                        <a href="{% url 'product_detail_admin' pk=product.pk %}" class="btn btn-secondary btn-block">More <i class="fa-solid fa-circle-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
